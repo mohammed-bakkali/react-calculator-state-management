@@ -9,7 +9,12 @@ A React calculator project implementing the `useReducer` hook for educational pu
 To install the project, clone the repository and run:
 
 ```bash
-npm install
+git clone https://github.com/mohammed-bakkali/react-calculator-use-reducer.git
+cd react-calculator-use-reducer
+npm i install
+npm start
+Then, open your browser and go to http://localhost:3000 to see the app in action.
+
 ## Contact
 
 For any questions or feedback, please reach out to:
