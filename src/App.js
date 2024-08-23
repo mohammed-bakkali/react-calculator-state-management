@@ -2,36 +2,14 @@ import logo from "./logo.svg";
 import "./App.css";
 
 import { useState, useReducer } from "react";
-import { type } from "@testing-library/user-event/dist/type";
 
-function resultReducer(CurrentresultState, action) {
-  console.log("calling the reducer", CurrentresultState, action);
-  const type = action.type;
-  if (type === "add") {
-    const { firstNumber, secondNumber } = action.payload;
-    return Number(firstNumber) + Number(secondNumber);
-  } else if (type === "subtracted") {
-    const { firstNumber, secondNumber } = action.payload;
-    return Number(firstNumber) - Number(secondNumber);
-  } else if (type === "subtracted") {
-    const { firstNumber, secondNumber } = action.payload;
-    return Number(firstNumber) - Number(secondNumber);
-  } else if (type === "multplied") {
-    const { firstNumber, secondNumber } = action.payload;
-    return Number(firstNumber) * Number(secondNumber);
-  }
-  else if (type === "divide") {
-    const { firstNumber, secondNumber } = action.payload;
-    return Number(firstNumber) / Number(secondNumber);
-  }
-}
+import resultReducer from "./reducers/resultReducer";
 
 function App() {
   const [firstNumberInput, setFirstNumberInput] = useState(null);
   const [secondNumberInput, setSecondNumberInput] = useState(null);
-  const [result, setResult] = useState(null);
 
-  const [result2, dispatch] = useReducer(resultReducer, 10);
+  const [result2, dispatch] = useReducer(resultReducer, null);
 
   // EVENT HANDLERS
   function handleSumClick() {
@@ -101,7 +79,6 @@ function App() {
 
         <hr />
 
-        <h2>{result}</h2>
         <h2>{result2}</h2>
       </div>
     </div>
