@@ -1,68 +1,111 @@
 import logo from "./logo.svg";
 import "./App.css";
 
-import { useState } from "react";
+import { useState, useReducer } from "react";
+import { type } from "@testing-library/user-event/dist/type";
+
+function resultReducer(CurrentresultState, action) {
+  console.log("calling the reducer", CurrentresultState, action);
+  const type = action.type;
+  if (type === "add") {
+    const { firstNumber, secondNumber } = action.payload;
+    return Number(firstNumber) + Number(secondNumber);
+  } else if (type === "subtracted") {
+    const { firstNumber, secondNumber } = action.payload;
+    return Number(firstNumber) - Number(secondNumber);
+  } else if (type === "subtracted") {
+    const { firstNumber, secondNumber } = action.payload;
+    return Number(firstNumber) - Number(secondNumber);
+  } else if (type === "multplied") {
+    const { firstNumber, secondNumber } = action.payload;
+    return Number(firstNumber) * Number(secondNumber);
+  }
+  else if (type === "divide") {
+    const { firstNumber, secondNumber } = action.payload;
+    return Number(firstNumber) / Number(secondNumber);
+  }
+}
 
 function App() {
-	const [firstNumberInput, setFirstNumberInput] = useState(null);
-	const [secondNumberInput, setSecondNumberInput] = useState(null);
-	const [result, setResult] = useState(null);
+  const [firstNumberInput, setFirstNumberInput] = useState(null);
+  const [secondNumberInput, setSecondNumberInput] = useState(null);
+  const [result, setResult] = useState(null);
 
-	// EVENT HANDLERS
-	function handleSumClick() {
-		const result = Number(firstNumberInput) + Number(secondNumberInput);
-		setResult(result);
-	}
+  const [result2, dispatch] = useReducer(resultReducer, 10);
 
-	function handleSubClick() {
-		const result = Number(firstNumberInput) - Number(secondNumberInput);
-		setResult(result);
-	}
+  // EVENT HANDLERS
+  function handleSumClick() {
+    dispatch({
+      type: "add",
+      payload: {
+        firstNumber: firstNumberInput,
+        secondNumber: secondNumberInput,
+      },
+    });
+  }
 
-	function handleMultClick() {
-		const result = Number(firstNumberInput) * Number(secondNumberInput);
-		setResult(result);
-	}
+  function handleSubClick() {
+    dispatch({
+      type: "subtracted",
+      payload: {
+        firstNumber: firstNumberInput,
+        secondNumber: secondNumberInput,
+      },
+    });
+  }
 
-	function handleDivClick() {
-		const result = Number(firstNumberInput) / Number(secondNumberInput);
-		setResult(result);
-	}
+  function handleMultClick() {
+    dispatch({
+      type: "multplied",
+      payload: {
+        firstNumber: firstNumberInput,
+        secondNumber: secondNumberInput,
+      },
+    });
+  }
 
-	return (
-		<div className="App">
-			<div
-				style={{
-				}}
-			>
-				{/* FIRST INPUT */}
-				<label>First Number</label>
-				<input
-					value={firstNumberInput}
-					onChange={(e) => setFirstNumberInput(e.target.value)}
-				/>
+  function handleDivClick() {
+    dispatch({
+      type: "divide",
+      payload: {
+        firstNumber: firstNumberInput,
+        secondNumber: secondNumberInput,
+      },
+    });
+  }
 
-				{/* SECOND INPUT */}
-				<label>Second Number</label>
-				<input
-					value={secondNumberInput}
-					onChange={(e) => setSecondNumberInput(e.target.value)}
-				/>
+  return (
+    <div className="App">
+      <div style={{}}>
+        {/* FIRST INPUT */}
+        <label>First Number</label>
+        <input
+          value={firstNumberInput}
+          onChange={(e) => setFirstNumberInput(e.target.value)}
+        />
 
-				<button onClick={handleSumClick}>sum</button>
+        {/* SECOND INPUT */}
+        <label>Second Number</label>
+        <input
+          value={secondNumberInput}
+          onChange={(e) => setSecondNumberInput(e.target.value)}
+        />
 
-				<button onClick={handleSubClick}>subtract</button>
+        <button onClick={handleSumClick}>sum</button>
 
-				<button onClick={handleMultClick}>multiply</button>
+        <button onClick={handleSubClick}>subtract</button>
 
-				<button onClick={handleDivClick}>divide</button>
+        <button onClick={handleMultClick}>multiply</button>
 
-				<hr />
+        <button onClick={handleDivClick}>divide</button>
 
-				<h2>{result}</h2>
-			</div>
-		</div>
-	);
+        <hr />
+
+        <h2>{result}</h2>
+        <h2>{result2}</h2>
+      </div>
+    </div>
+  );
 }
 
 export default App;
