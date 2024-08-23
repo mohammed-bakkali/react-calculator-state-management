@@ -1,8 +1,10 @@
 # React Calculator with useReducer
 
 ## Description
+## Description
+This is a React calculator project that implements the `useReducer` hook for educational purposes. The project demonstrates how to manage complex state logic in a React application using `useReducer`.
 
-A React calculator project implementing the `useReducer` hook for educational purposes.
+![Calculator Screenshot](./src/assets/images/calculator.png.png)
 
 ## Installation
 
@@ -13,7 +15,7 @@ git clone https://github.com/mohammed-bakkali/react-calculator-use-reducer.git
 cd react-calculator-use-reducer
 npm i install
 npm start
-Then, open your browser and go to http://localhost:3000 to see the app in action.
+Open your browser and go to [http://localhost:3000](http://localhost:3000) to see the app in action.
 
 ## Contact
 
