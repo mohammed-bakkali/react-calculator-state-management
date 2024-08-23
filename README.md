@@ -1,7 +1,7 @@
 # React Calculator with useReducer
 
 ## Description
-
+This is the code before adding
 A React calculator project implementing the `useReducer` hook for educational purposes.
 
 ## Installation
