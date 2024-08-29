@@ -1,68 +1,61 @@
-import logo from "./logo.svg";
 import "./App.css";
-
-import { useState, useReducer } from "react";
-
-import resultReducer from "./reducers/resultReducer";
+import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { add, subtract, multiply, divide } from "./features/calcs/calcSlice";
 
 function App() {
+  const resultState = useSelector((state) => state.calc.result);
+  const dispatch = useDispatch();
+
   const [firstNumberInput, setFirstNumberInput] = useState(null);
   const [secondNumberInput, setSecondNumberInput] = useState(null);
 
-  const [result2, dispatch] = useReducer(resultReducer, null);
-
   // EVENT HANDLERS
   function handleSumClick() {
-    dispatch({
-      type: "add",
-      payload: {
+    dispatch(
+      add({
         firstNumber: firstNumberInput,
         secondNumber: secondNumberInput,
-      },
-    });
+      })
+    );
   }
 
   function handleSubClick() {
-    dispatch({
-      type: "subtracted",
-      payload: {
+    dispatch(
+      subtract({
         firstNumber: firstNumberInput,
         secondNumber: secondNumberInput,
-      },
-    });
+      })
+    );
   }
 
   function handleMultClick() {
-    dispatch({
-      type: "multplied",
-      payload: {
+    dispatch(
+      multiply({
         firstNumber: firstNumberInput,
         secondNumber: secondNumberInput,
-      },
-    });
+      })
+    );
   }
 
   function handleDivClick() {
-    dispatch({
-      type: "divide",
-      payload: {
+    dispatch(
+      divide({
         firstNumber: firstNumberInput,
         secondNumber: secondNumberInput,
-      },
-    });
+      })
+    );
   }
 
   return (
     <div className="App">
-      <div style={{}}>
-        {/* FIRST INPUT */}
+      <div>
         <label>First Number</label>
         <input
           value={firstNumberInput}
           onChange={(e) => setFirstNumberInput(e.target.value)}
         />
 
-        {/* SECOND INPUT */}
         <label>Second Number</label>
         <input
           value={secondNumberInput}
@@ -70,16 +63,13 @@ function App() {
         />
 
         <button onClick={handleSumClick}>sum</button>
-
         <button onClick={handleSubClick}>subtract</button>
-
         <button onClick={handleMultClick}>multiply</button>
-
         <button onClick={handleDivClick}>divide</button>
 
         <hr />
 
-        <h2>{result2}</h2>
+        <h2>{resultState}</h2>
       </div>
     </div>
   );

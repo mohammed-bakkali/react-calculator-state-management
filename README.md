@@ -1,8 +1,8 @@
-# React Calculator with useReducer
+# React Calculator with Redux
 
 ## Description
 
-This is a React calculator project that implements the `useReducer` hook for educational purposes. The project demonstrates how to manage complex state logic in a React application using `useReducer`.
+This is a React calculator project that implements Redux for state management. The project demonstrates how to manage complex state logic in a React application using Redux, including the use of Redux Toolkit for easier setup and state management.
 
 ![Calculator Screenshot](./src/assets/images/calculator.png.png)
 
